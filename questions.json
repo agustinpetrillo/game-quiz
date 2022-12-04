@@ -1,0 +1,38 @@
+[
+  {
+    "id": 0,
+    "question": "¿Por qué Petri es el mejor?",
+    "answers": ["Porque si", "Porque es muy fachero", "Porque se saca todo 10"],
+    "correct_answer": "Porque es muy fachero",
+    "points_correct": 105
+  },
+  {
+    "id": 1,
+    "question": "¿Por qué Chipi es el mas wachin?",
+    "answers": [
+      "Porque si",
+      "Porque es muy wachin",
+      "Porque juega limpiar casas simulator"
+    ],
+    "correct_answer": "Porque juega limpiar casas simulator",
+    "points_correct": 105
+  },
+  {
+    "id": 2,
+    "question": "¿Por qué Risi no juega a la play?",
+    "answers": ["Porque no", "Porque es un boludo", "Porque se saca todo 10"],
+    "correct_answer": "Porque es un boludo",
+    "points_correct": 105
+  },
+  {
+    "id": 3,
+    "question": "¿Por qué Cristelo es alto gato?",
+    "answers": [
+      "Porque si",
+      "Porque se fue a Irlanda",
+      "Porque labura en una fábrica"
+    ],
+    "correct_answer": "Porque se fue a Irlanda",
+    "points_correct": 105
+  }
+]
