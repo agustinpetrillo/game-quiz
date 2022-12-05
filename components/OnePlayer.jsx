@@ -5,41 +5,34 @@ import { useRouter } from "next/router";
 
 const OnePlayer = () => {
   const router = useRouter();
-  const {
-    playerOneName,
-    playerOnePoints,
-    setPlayerOnePoints,
-    playerOneNextQuestion,
-    setPlayerOneNextQuestion,
-    setPlayerOneTimeRemaining,
-    playerOneTimeRemaining,
-    playerOneGameOver,
-    setPlayerOneGameOver,
-    playerOneDisabled,
-    setPlayerOneDisabled,
-    dificulty,
-  } = useContext(Utils);
+  const { playerOne, setPlayerOne, dificulty } = useContext(Utils);
 
   useEffect(() => {
-    document.title = `${playerOneName} - Preguntas y respuestas`;
+    document.title = `${playerOne.name} - Preguntas y respuestas`;
 
     const intervalOnePlayer = setInterval(() => {
-      if (playerOneTimeRemaining > 0) {
-        setPlayerOneTimeRemaining((prev) => prev - 1);
+      if (playerOne.timeRemaining > 0) {
+        setPlayerOne((prevState) => ({
+          ...prevState,
+          timeRemaining: playerOne.timeRemaining - 1,
+        }));
       }
     }, 1000);
 
     const time = timeDependsDificulty();
 
-    if (playerOneTimeRemaining === 0) {
-      setPlayerOneNextQuestion((prev) => prev + 1);
-      setPlayerOneTimeRemaining(time[playerOneNextQuestion + 1]);
+    if (playerOne.timeRemaining === 0) {
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        nextQuestion: playerOne.nextQuestion + 1,
+        timeRemaining: time[playerOne.nextQuestion + 1],
+      }));
     }
     if (
-      playerOneTimeRemaining === 0 &&
-      playerOneNextQuestion >= Questions.length
+      playerOne.timeRemaining === 0 &&
+      playerOne.nextQuestion >= Questions.length
     ) {
-      setPlayerOneGameOver(true);
+      setPlayerOne((prevState) => ({ ...prevState, gameOver: true }));
     }
 
     return () => clearInterval(intervalOnePlayer);
@@ -70,36 +63,39 @@ const OnePlayer = () => {
     return randomQuestion;
   };
 
-  const handlePlayerOneGameOver = () => {
-    setTimeout(() => {
-      setPlayerOneGameOver(false);
-    }, 100);
-  };
-
   const resetTime = () => {
     const time = timeDependsDificulty();
     setTimeout(() => {
-      setPlayerOneTimeRemaining(time[playerOneNextQuestion]);
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        timeRemaining: time[playerOne.nextQuestion],
+      }));
     }, 100);
   };
 
   const resetQuestions = () => {
     setTimeout(() => {
-      setPlayerOneNextQuestion(0);
+      setPlayerOne((prevState) => ({ ...prevState, nextQuestion: 0 }));
     }, 100);
   };
 
   const handlePlayerOneCorrectAnswer = (e, isCorrect) => {
-    setPlayerOneDisabled(true);
+    setPlayerOne((prevState) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
     const time = timeDependsDificulty();
     e.target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
-      setPlayerOnePoints((prev) => prev + correctPoints[playerOneNextQuestion]);
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        points: playerOne.points + correctPoints[playerOne.nextQuestion],
+      }));
     setTimeout(() => {
-      setPlayerOneNextQuestion((prev) => prev + 1);
-      setPlayerOneTimeRemaining(time[playerOneNextQuestion]);
-      setPlayerOneDisabled(false);
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        nextQuestion: playerOne.nextQuestion + 1,
+        timeRemaining: time[playerOne.nextQuestion],
+        disabled: false,
+      }));
     }, 500);
   };
 
@@ -107,10 +103,10 @@ const OnePlayer = () => {
     <>
       <div className="flex flex-col items-center justify-center my-10 text-center">
         <div className="max-w-lg">
-          <h1 className="mb-20">Jugador: {playerOneName}</h1>
+          <h1 className="mb-20">Jugador: {playerOne.name}</h1>
           {Questions.slice(
-            playerOneNextQuestion,
-            playerOneNextQuestion + 1
+            playerOne.nextQuestion,
+            playerOne.nextQuestion + 1
           ).map((question) => (
             <div key={question.id}>
               <p>
@@ -118,46 +114,48 @@ const OnePlayer = () => {
               </p>
               <h2 className="mb-3 text-2xl">{question.question}</h2>
               <div className="flex flex-col space-y-2">
-                {Questions[playerOneNextQuestion].answers.map((question, i) => (
-                  <div key={i}>
-                    {!playerOneGameOver ? (
-                      <button
-                        disabled={playerOneDisabled}
-                        className="w-full py-2 text-white bg-black border rounded"
-                        onClick={(e) =>
-                          handlePlayerOneCorrectAnswer(e, question.isCorrect)
-                        }
-                      >
-                        {question.answer}
-                      </button>
-                    ) : null}
-                  </div>
-                ))}
+                {Questions[playerOne.nextQuestion].answers.map(
+                  (question, i) => (
+                    <div key={i}>
+                      {!playerOne.gameOver ? (
+                        <button
+                          disabled={playerOne.disabled}
+                          className="w-full py-2 text-white bg-black border rounded"
+                          onClick={(e) =>
+                            handlePlayerOneCorrectAnswer(e, question.isCorrect)
+                          }
+                        >
+                          {question.answer}
+                        </button>
+                      ) : null}
+                    </div>
+                  )
+                )}
                 <div>
-                  {playerOneTimeRemaining <= 5 ? (
+                  {playerOne.timeRemaining <= 5 ? (
                     <p>
                       Tiempo restante:
                       <span className="ml-1 text-base text-red-600">
-                        {playerOneTimeRemaining}
+                        {playerOne.timeRemaining}
                       </span>
                     </p>
                   ) : (
-                    <p>Tiempo restante: {playerOneTimeRemaining}</p>
+                    <p>Tiempo restante: {playerOne.timeRemaining}</p>
                   )}
                 </div>
               </div>
-              <h2 className="mt-5 text-2xl">Puntos: {playerOnePoints}</h2>
+              <h2 className="mt-5 text-2xl">Puntos: {playerOne.points}</h2>
             </div>
           ))}
-          {playerOneNextQuestion >= Questions.length ? (
+          {playerOne.nextQuestion >= Questions.length ? (
             <div>
               <h1>Juego finalizado.</h1>
-              <p className="mb-6">Puntos conseguidos: {playerOnePoints}</p>
+              <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
               <button
                 className="w-full py-2 text-white bg-black border rounded"
                 onClick={() => {
                   router.push("/NameSection");
-                  setPlayerOnePoints(0);
+                  setPlayerOne((prevState) => ({ ...prevState, points: 0 }));
                   resetQuestions();
                   resetTime();
                 }}

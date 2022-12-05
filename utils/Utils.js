@@ -39,57 +39,33 @@ export const UtilsProvider = ({ children }) => {
   };
   const [totalPlayers, setTotalPlayers] = useState(null);
   const [dificulty, setDificulty] = useState(whatDificulty());
-  const [playerOneName, setPlayerOneName] = useState(localStoragePlayerOne());
-  const [playerTwoName, setPlayerTwoName] = useState(localStoragePlayerTwo());
-  const [playerOnePoints, setPlayerOnePoints] = useState(0);
-  const [playerTwoPoints, setPlayerTwoPoints] = useState(0);
-  const [playerOneNextQuestion, setPlayerOneNextQuestion] = useState(0);
-  const [playerTwoNextQuestion, setPlayerTwoNextQuestion] = useState(0);
-  const [playerOneTimeRemaining, setPlayerOneTimeRemaining] = useState(
-    initialTime(dificulty)
-  );
-  const [playerTwoTimeRemaining, setPlayerTwoTimeRemaining] = useState(
-    initialTime(dificulty)
-  );
-  const [playerOneGameOver, setPlayerOneGameOver] = useState(false);
-  const [playerTwoGameOver, setPlayerTwoGameOver] = useState(false);
-  const [playerOneDisabled, setPlayerOneDisabled] = useState(false);
-  const [playerTwoDisabled, setPlayerTwoDisabled] = useState(false);
-  const [turnToPlayerOne, setTurnToPlayerOne] = useState(true);
-  const [turnToPlayerTwo, setTurnToPlayerTwo] = useState(false);
+  const [playerOne, setPlayerOne] = useState({
+    name: localStoragePlayerOne(),
+    points: 0,
+    nextQuestion: 0,
+    timeRemaining: 15,
+    gameOver: false,
+    disabled: false,
+    turn: true,
+  });
+  const [playerTwo, setPlayerTwo] = useState({
+    name: localStoragePlayerTwo(),
+    points: 0,
+    nextQuestion: 0,
+    timeRemaining: 15,
+    gameOver: false,
+    disabled: false,
+    turn: false,
+  });
   const values = {
     totalPlayers,
     setTotalPlayers,
     dificulty,
     setDificulty,
-    playerOneName,
-    setPlayerOneName,
-    playerTwoName,
-    setPlayerTwoName,
-    playerOnePoints,
-    setPlayerOnePoints,
-    playerTwoPoints,
-    setPlayerTwoPoints,
-    playerOneNextQuestion,
-    setPlayerOneNextQuestion,
-    playerTwoNextQuestion,
-    setPlayerTwoNextQuestion,
-    playerOneTimeRemaining,
-    setPlayerOneTimeRemaining,
-    playerTwoTimeRemaining,
-    setPlayerTwoTimeRemaining,
-    playerOneGameOver,
-    setPlayerOneGameOver,
-    playerTwoGameOver,
-    setPlayerTwoGameOver,
-    playerOneDisabled,
-    setPlayerOneDisabled,
-    playerTwoDisabled,
-    setPlayerTwoDisabled,
-    turnToPlayerOne,
-    setTurnToPlayerOne,
-    turnToPlayerTwo,
-    setTurnToPlayerTwo,
+    playerOne,
+    setPlayerOne,
+    playerTwo,
+    setPlayerTwo,
   };
   return <Utils.Provider value={values}>{children}</Utils.Provider>;
 };

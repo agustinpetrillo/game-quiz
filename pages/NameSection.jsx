@@ -6,17 +6,17 @@ const NameSection = () => {
   const router = useRouter();
   const {
     totalPlayers,
-    playerOneName,
-    setPlayerOneName,
-    playerTwoName,
-    setPlayerTwoName,
+    playerOne,
+    setPlayerOne,
+    playerTwo,
+    setPlayerTwo,
     setDificulty,
   } = useContext(Utils);
   const [isSelected, setIsSelected] = useState([true, false, false]);
 
   const setPlayerOneLocalStorage = (value) => {
     try {
-      setPlayerOneName(value);
+      setPlayerOne((prev) => ({ ...prev, name: value }));
       localStorage.setItem("namePlayerOne", value);
     } catch (err) {
       console.error(err);
@@ -25,7 +25,7 @@ const NameSection = () => {
 
   const setPlayerTwoLocalStorage = (value) => {
     try {
-      setPlayerTwoName(value);
+      setPlayerTwo((prev) => ({ ...prev, name: value }));
       localStorage.setItem("namePlayerTwo", value);
     } catch (err) {
       console.error(err);
@@ -36,10 +36,10 @@ const NameSection = () => {
     return (
       <>
         <div className="flex flex-col items-center justify-center min-h-screen">
-          {playerOneName === null ? (
+          {playerOne.name === null ? (
             <h1 className="mb-3">¡Bienvenido!</h1>
           ) : (
-            <h1 className="mb-3">¡Bienvenido {playerOneName}!</h1>
+            <h1 className="mb-3">¡Bienvenido {playerOne.name}!</h1>
           )}
           <p className="mb-1">Ingresá tu nombre:</p>
           <input
@@ -110,12 +110,12 @@ const NameSection = () => {
           <div className="flex justify-center space-x-20">
             <div className="flex flex-col items-center justify-center">
               <h2 className="text-lg text-blue-600 mb-7">Jugador 1</h2>
-              {playerOneName === null ? (
+              {playerOne.name === null ? (
                 <h1 className="mb-3">¡Bienvenido!</h1>
               ) : (
                 <h1 className="mb-3">
                   ¡Bienvenido{" "}
-                  <span className="text-blue-600">{playerOneName}</span>!
+                  <span className="text-blue-600">{playerOne.name}</span>!
                 </h1>
               )}
               <p className="mb-1">Ingresá tu nombre:</p>
@@ -128,12 +128,12 @@ const NameSection = () => {
             </div>
             <div className="flex flex-col items-center justify-center">
               <h2 className="text-lg text-red-600 mb-7">Jugador 2</h2>
-              {playerTwoName === null ? (
+              {playerTwo.name === null ? (
                 <h1 className="mb-3">¡Bienvenido!</h1>
               ) : (
                 <h1 className="mb-3">
                   ¡Bienvenido{" "}
-                  <span className="text-red-600">{playerTwoName}</span>!
+                  <span className="text-red-600">{playerTwo.name}</span>!
                 </h1>
               )}
               <p className="mb-1">Ingresá tu nombre:</p>
