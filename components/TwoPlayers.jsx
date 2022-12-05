@@ -193,16 +193,16 @@ const TwoPlayers = () => {
                     )
                   )}
                   <h2 className="text-lg">Puntos: {playerOne.points}</h2>
-                  <div>
+                  <div className="flex justify-center">
                     {playerOne.timeRemaining <= 5 ? (
-                      <p className="ml-2">
+                      <p className="flex">
                         Tiempo restante:
-                        <span className="ml-1 text-base text-red-600">
+                        <span className="text-base text-red-600">
                           <PlayerOneCounter />
                         </span>
                       </p>
                     ) : (
-                      <p>
+                      <p className="flex">
                         Tiempo restante: <PlayerOneCounter />
                       </p>
                     )}
@@ -261,16 +261,16 @@ const TwoPlayers = () => {
                     )
                   )}
                   <h2 className="text-lg">Puntos: {playerTwo.points}</h2>
-                  <div>
+                  <div className="flex justify-center">
                     {playerTwo.timeRemaining <= 5 ? (
-                      <p>
+                      <p className="flex">
                         Tiempo restante:
-                        <span className="ml-1 text-base text-red-600">
+                        <span className="text-base text-red-600">
                           <PlayerTwoCounter />
                         </span>
                       </p>
                     ) : (
-                      <p>
+                      <p className="flex">
                         Tiempo restante: <PlayerTwoCounter />
                       </p>
                     )}

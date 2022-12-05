@@ -6,18 +6,12 @@ import PlayerOneCounter from "./PlayerOneCounter";
 
 const OnePlayer = () => {
   const router = useRouter();
-  const { playerOne, setPlayerOne, timeDependsDificulty } = useContext(Utils);
+  const { playerOne, setPlayerOne, timeDependsDificulty, randomQuestion } =
+    useContext(Utils);
 
   useEffect(() => {
     document.title = `${playerOne.name} - Preguntas y respuestas`;
   });
-
-  const randomQuestion = () => {
-    const actualQuestion = Questions.map((question) => question.id);
-    const randomQuestion =
-      actualQuestion[Math.floor(Math.random() * actualQuestion.length)];
-    return randomQuestion;
-  };
 
   const resetGame = () => {
     const time = timeDependsDificulty();
