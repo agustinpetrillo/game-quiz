@@ -14,7 +14,7 @@ const OnePlayer = () => {
       if (playerOne.timeRemaining > 0) {
         setPlayerOne((prevState) => ({
           ...prevState,
-          timeRemaining: playerOne.timeRemaining - 1,
+          timeRemaining: prevState.timeRemaining - 1,
         }));
       }
     }, 1000);
@@ -24,16 +24,12 @@ const OnePlayer = () => {
     if (playerOne.timeRemaining === 0) {
       setPlayerOne((prevState) => ({
         ...prevState,
-        nextQuestion: playerOne.nextQuestion + 1,
+        nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion + 1],
       }));
     }
-    if (
-      playerOne.timeRemaining === 0 &&
-      playerOne.nextQuestion >= Questions.length
-    ) {
-      setPlayerOne((prevState) => ({ ...prevState, gameOver: true }));
-    }
+
+    console.log(playerOne);
 
     return () => clearInterval(intervalOnePlayer);
   });
@@ -63,19 +59,15 @@ const OnePlayer = () => {
     return randomQuestion;
   };
 
-  const resetTime = () => {
+  const resetGame = () => {
     const time = timeDependsDificulty();
     setTimeout(() => {
       setPlayerOne((prevState) => ({
         ...prevState,
+        nextQuestion: 0,
         timeRemaining: time[playerOne.nextQuestion],
+        points: 0,
       }));
-    }, 100);
-  };
-
-  const resetQuestions = () => {
-    setTimeout(() => {
-      setPlayerOne((prevState) => ({ ...prevState, nextQuestion: 0 }));
     }, 100);
   };
 
@@ -92,7 +84,7 @@ const OnePlayer = () => {
     setTimeout(() => {
       setPlayerOne((prevState) => ({
         ...prevState,
-        nextQuestion: playerOne.nextQuestion + 1,
+        nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion],
         disabled: false,
       }));
@@ -155,9 +147,7 @@ const OnePlayer = () => {
                 className="w-full py-2 text-white bg-black border rounded"
                 onClick={() => {
                   router.push("/NameSection");
-                  setPlayerOne((prevState) => ({ ...prevState, points: 0 }));
-                  resetQuestions();
-                  resetTime();
+                  resetGame();
                 }}
               >
                 Volver a jugar

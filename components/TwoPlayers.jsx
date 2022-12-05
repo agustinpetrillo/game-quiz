@@ -15,13 +15,13 @@ const TwoPlayers = () => {
       if (playerOne.timeRemaining > 0) {
         setPlayerOne((prevState) => ({
           ...prevState,
-          timeRemaining: playerOne.timeRemaining - 1,
+          timeRemaining: prevState.timeRemaining - 1,
         }));
       }
       if (playerTwo.timeRemaining > 0) {
         setPlayerTwo((prevState) => ({
           ...prevState,
-          timeRemaining: playerTwo.timeRemaining - 1,
+          timeRemaining: prevState.timeRemaining - 1,
         }));
       }
     }, 1000);
@@ -31,7 +31,7 @@ const TwoPlayers = () => {
     if (playerOne.timeRemaining === 0) {
       setPlayerOne((prevState) => ({
         ...prevState,
-        nextQuestion: playerOne.nextQuestion + 1,
+        nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion + 1],
         turn: !playerOne.turn,
       }));
@@ -40,23 +40,11 @@ const TwoPlayers = () => {
     if (playerTwo.timeRemaining === 0) {
       setPlayerTwo((prevState) => ({
         ...prevState,
-        nextQuestion: playerTwo.nextQuestion + 1,
+        nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerTwo.nextQuestion + 1],
         turn: !playerTwo.turn,
       }));
       setPlayerOne((prevState) => ({ ...prevState, turn: !playerOne.turn }));
-    }
-    if (
-      playerOne.timeRemaining === 0 &&
-      playerOne.nextQuestion >= Questions.length
-    ) {
-      setPlayerOne((prevState) => ({ ...prevState, gameOver: true }));
-    }
-    if (
-      playerTwo.timeRemaining === 0 &&
-      playerTwo.nextQuestion >= Questions.length
-    ) {
-      setPlayerTwo((prevState) => ({ ...prevState, gameOver: true }));
     }
 
     return () => clearInterval(intervalAllPlayers);
@@ -74,26 +62,23 @@ const TwoPlayers = () => {
     return time;
   };
 
-  const resetTime = () => {
+  const resetGame = () => {
     const time = timeDependsDificulty();
     setTimeout(() => {
       if (playerTwo.gameOver || playerOne.gameOver) {
         setPlayerOne((prevState) => ({
           ...prevState,
           timeRemaining: time[playerOne.nextQuestion],
+          nextQuestion: 0,
+          points: 0,
         }));
         setPlayerTwo((prevState) => ({
           ...prevState,
           timeRemaining: time[playerTwo.nextQuestion],
+          nextQuestion: 0,
+          points: 0,
         }));
       }
-    }, 100);
-  };
-
-  const resetQuestions = () => {
-    setTimeout(() => {
-      setPlayerOne((prevState) => ({ ...prevState, nextQuestion: 0 }));
-      setPlayerTwo((prevState) => ({ ...prevState, nextQuestion: 0 }));
     }, 100);
   };
 
@@ -110,7 +95,7 @@ const TwoPlayers = () => {
     setTimeout(() => {
       setPlayerOne((prevState) => ({
         ...prevState,
-        nextQuestion: playerOne.nextQuestion + 1,
+        nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion],
         disabled: false,
         turn: !playerOne.turn,
@@ -132,7 +117,7 @@ const TwoPlayers = () => {
     setTimeout(() => {
       setPlayerTwo((prevState) => ({
         ...prevState,
-        nextQuestion: playerTwo.nextQuestion + 1,
+        nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerTwo.nextQuestion],
         disabled: false,
         turn: !playerTwo.turn,
@@ -203,13 +188,11 @@ const TwoPlayers = () => {
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
                 <button
+                  disabled={playerTwo.turn}
                   className="w-full py-2 text-white bg-black border rounded"
                   onClick={() => {
                     router.push("/NameSection");
-                    resetQuestions();
-                    resetTime();
-                    setPlayerOne((prevState) => ({ ...prevState, points: 0 }));
-                    setPlayerTwo((prevState) => ({ ...prevState, points: 0 }));
+                    resetGame();
                   }}
                 >
                   Volver a jugar
@@ -275,13 +258,11 @@ const TwoPlayers = () => {
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerTwo.points}</p>
                 <button
+                  disabled={playerOne.turn}
                   className="w-full py-2 text-white bg-black border rounded"
                   onClick={() => {
                     router.push("/NameSection");
-                    resetQuestions();
-                    resetTime();
-                    setPlayerTwo((prevState) => ({ ...prevState, points: 0 }));
-                    setPlayerOne((prevState) => ({ ...prevState, points: 0 }));
+                    resetGame();
                   }}
                 >
                   Volver a jugar
@@ -312,6 +293,11 @@ const TwoPlayers = () => {
                 <h1>Total: {playerTwo.points}.</h1>
               </div>
             )}
+            {playerOne.points === playerTwo.points ? (
+              <div>
+                <h1>¡EMPATE!</h1>
+              </div>
+            ) : null}
           </div>
         ) : null}
       </div>
