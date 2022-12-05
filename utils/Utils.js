@@ -53,7 +53,7 @@ export const UtilsProvider = ({ children }) => {
     points: 0,
     nextQuestion: 0,
     timeRemaining: initialTime(dificulty),
-    disabled: false,
+    disabled: true,
     gameOver: false,
     turn: false,
   });

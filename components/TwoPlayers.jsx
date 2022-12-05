@@ -11,55 +11,55 @@ const TwoPlayers = () => {
   useEffect(() => {
     document.title = `${playerOne.name} / ${playerTwo.name} - Preguntas y respuestas`;
 
-    const intervalAllPlayers = setInterval(() => {
-      if (playerOne.timeRemaining > 0) {
-        setPlayerOne((prevState) => ({
-          ...prevState,
-          timeRemaining: prevState.timeRemaining - 1,
-        }));
-      }
-      if (playerTwo.timeRemaining > 0) {
-        setPlayerTwo((prevState) => ({
-          ...prevState,
-          timeRemaining: prevState.timeRemaining - 1,
-        }));
-      }
-    }, 1000);
+    // const intervalAllPlayers = setInterval(() => {
+    //   if (playerOne.timeRemaining > 0) {
+    //     setPlayerOne((prevState) => ({
+    //       ...prevState,
+    //       timeRemaining: prevState.timeRemaining - 1,
+    //     }));
+    //   }
+    //   if (playerTwo.timeRemaining > 0) {
+    //     setPlayerTwo((prevState) => ({
+    //       ...prevState,
+    //       timeRemaining: prevState.timeRemaining - 1,
+    //     }));
+    //   }
+    // }, 1000);
 
-    const time = timeDependsDificulty();
+    // const time = timeDependsDificulty();
 
-    if (playerOne.timeRemaining === 0) {
-      setPlayerOne((prevState) => ({
-        ...prevState,
-        nextQuestion: prevState.nextQuestion + 1,
-        timeRemaining: time[playerOne.nextQuestion + 1],
-        turn: !playerOne.turn,
-      }));
-      setPlayerTwo((prevState) => ({ ...prevState, turn: !playerTwo.turn }));
-    }
-    if (playerTwo.timeRemaining === 0) {
-      setPlayerTwo((prevState) => ({
-        ...prevState,
-        nextQuestion: prevState.nextQuestion + 1,
-        timeRemaining: time[playerTwo.nextQuestion + 1],
-        turn: !playerTwo.turn,
-      }));
-      setPlayerOne((prevState) => ({ ...prevState, turn: !playerOne.turn }));
-    }
+    // if (playerOne.timeRemaining === 0) {
+    //   setPlayerOne((prevState) => ({
+    //     ...prevState,
+    //     nextQuestion: prevState.nextQuestion + 1,
+    //     timeRemaining: time[playerOne.nextQuestion + 1],
+    //     turn: !playerOne.turn,
+    //   }));
+    //   setPlayerTwo((prevState) => ({ ...prevState, turn: !playerTwo.turn }));
+    // }
+    // if (playerTwo.timeRemaining === 0) {
+    //   setPlayerTwo((prevState) => ({
+    //     ...prevState,
+    //     nextQuestion: prevState.nextQuestion + 1,
+    //     timeRemaining: time[playerTwo.nextQuestion + 1],
+    //     turn: !playerTwo.turn,
+    //   }));
+    //   setPlayerOne((prevState) => ({ ...prevState, turn: !playerOne.turn }));
+    // }
 
-    if (
-      playerOne.timeRemaining === 0 &&
-      playerOne.nextQuestion >= Questions.length
-    )
-      setPlayerOne((prevState) => ({ ...prevState, gameOver: true }));
+    // if (
+    //   playerOne.timeRemaining === 0 &&
+    //   playerOne.nextQuestion >= Questions.length
+    // )
+    //   setPlayerOne((prevState) => ({ ...prevState, gameOver: true }));
 
-    if (
-      playerTwo.timeRemaining === 0 &&
-      playerTwo.nextQuestion >= Questions.length
-    )
-      setPlayerTwo((prevState) => ({ ...prevState, gameOver: true }));
+    // if (
+    //   playerTwo.timeRemaining === 0 &&
+    //   playerTwo.nextQuestion >= Questions.length
+    // )
+    //   setPlayerTwo((prevState) => ({ ...prevState, gameOver: true }));
 
-    return () => clearInterval(intervalAllPlayers);
+    // return () => clearInterval(intervalAllPlayers);
   });
 
   const timeDependsDificulty = () => {
@@ -77,7 +77,8 @@ const TwoPlayers = () => {
   const resetGame = () => {
     const time = timeDependsDificulty();
     setTimeout(() => {
-      if (playerTwo.gameOver || playerOne.gameOver) {
+      // if (playerTwo.gameOver || playerOne.gameOver) {
+      if (!playerTwo.gameOver || !playerOne.gameOver) {
         setPlayerOne((prevState) => ({
           ...prevState,
           timeRemaining: time[playerOne.nextQuestion],
@@ -109,10 +110,13 @@ const TwoPlayers = () => {
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion],
-        disabled: false,
         turn: !playerOne.turn,
       }));
-      setPlayerTwo((prevState) => ({ ...prevState, turn: !playerTwo.turn }));
+      setPlayerTwo((prevState) => ({
+        ...prevState,
+        turn: !playerTwo.turn,
+        disabled: false,
+      }));
     }, 500);
   };
 
@@ -131,10 +135,13 @@ const TwoPlayers = () => {
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerTwo.nextQuestion],
-        disabled: false,
         turn: !playerTwo.turn,
       }));
-      setPlayerOne((prevState) => ({ ...prevState, turn: !playerOne.turn }));
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        turn: !playerOne.turn,
+        disabled: false,
+      }));
     }, 500);
   };
 
@@ -163,7 +170,7 @@ const TwoPlayers = () => {
                     (question, i) => (
                       <div key={i}>
                         <button
-                          disabled={!playerOne.turn}
+                          disabled={playerOne.disabled}
                           className="w-full py-2 text-white bg-black border rounded"
                           onClick={(e) =>
                             handlePlayerOneCorrectAnswer(e, question.isCorrect)
@@ -228,7 +235,7 @@ const TwoPlayers = () => {
                     (question, i) => (
                       <div key={i}>
                         <button
-                          disabled={!playerTwo.turn}
+                          disabled={playerTwo.disabled}
                           className="w-full py-2 text-white bg-black border rounded"
                           onClick={(e) =>
                             handlePlayerTwoCorrectAnswer(e, question.isCorrect)
