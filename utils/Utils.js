@@ -45,6 +45,7 @@ export const UtilsProvider = ({ children }) => {
     nextQuestion: 0,
     timeRemaining: initialTime(dificulty),
     disabled: false,
+    gameOver: false,
     turn: true,
   });
   const [playerTwo, setPlayerTwo] = useState({
@@ -53,6 +54,7 @@ export const UtilsProvider = ({ children }) => {
     nextQuestion: 0,
     timeRemaining: initialTime(dificulty),
     disabled: false,
+    gameOver: false,
     turn: false,
   });
   const values = {

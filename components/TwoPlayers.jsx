@@ -47,6 +47,18 @@ const TwoPlayers = () => {
       setPlayerOne((prevState) => ({ ...prevState, turn: !playerOne.turn }));
     }
 
+    if (
+      playerOne.timeRemaining === 0 &&
+      playerOne.nextQuestion >= Questions.length
+    )
+      setPlayerOne((prevState) => ({ ...prevState, gameOver: true }));
+
+    if (
+      playerTwo.timeRemaining === 0 &&
+      playerTwo.nextQuestion >= Questions.length
+    )
+      setPlayerTwo((prevState) => ({ ...prevState, gameOver: true }));
+
     return () => clearInterval(intervalAllPlayers);
   });
 
@@ -150,20 +162,15 @@ const TwoPlayers = () => {
                   {Questions[playerOne.nextQuestion].answers.map(
                     (question, i) => (
                       <div key={i}>
-                        {!playerOne.gameOver ? (
-                          <button
-                            disabled={!playerOne.turn}
-                            className="w-full py-2 text-white bg-black border rounded"
-                            onClick={(e) =>
-                              handlePlayerOneCorrectAnswer(
-                                e,
-                                question.isCorrect
-                              )
-                            }
-                          >
-                            {question.answer}
-                          </button>
-                        ) : null}
+                        <button
+                          disabled={!playerOne.turn}
+                          className="w-full py-2 text-white bg-black border rounded"
+                          onClick={(e) =>
+                            handlePlayerOneCorrectAnswer(e, question.isCorrect)
+                          }
+                        >
+                          {question.answer}
+                        </button>
                       </div>
                     )
                   )}
@@ -188,7 +195,7 @@ const TwoPlayers = () => {
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
                 <button
-                  disabled={playerTwo.turn}
+                  disabled={!playerOne.gameOver}
                   className="w-full py-2 text-white bg-black border rounded"
                   onClick={() => {
                     router.push("/NameSection");
@@ -220,20 +227,15 @@ const TwoPlayers = () => {
                   {Questions[playerTwo.nextQuestion].answers.map(
                     (question, i) => (
                       <div key={i}>
-                        {!playerTwo.gameOver ? (
-                          <button
-                            disabled={!playerTwo.turn}
-                            className="w-full py-2 text-white bg-black border rounded"
-                            onClick={(e) =>
-                              handlePlayerTwoCorrectAnswer(
-                                e,
-                                question.isCorrect
-                              )
-                            }
-                          >
-                            {question.answer}
-                          </button>
-                        ) : null}
+                        <button
+                          disabled={!playerTwo.turn}
+                          className="w-full py-2 text-white bg-black border rounded"
+                          onClick={(e) =>
+                            handlePlayerTwoCorrectAnswer(e, question.isCorrect)
+                          }
+                        >
+                          {question.answer}
+                        </button>
                       </div>
                     )
                   )}
@@ -258,7 +260,7 @@ const TwoPlayers = () => {
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerTwo.points}</p>
                 <button
-                  disabled={playerOne.turn}
+                  disabled={!playerTwo.gameOver}
                   className="w-full py-2 text-white bg-black border rounded"
                   onClick={() => {
                     router.push("/NameSection");

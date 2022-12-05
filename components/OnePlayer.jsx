@@ -29,8 +29,6 @@ const OnePlayer = () => {
       }));
     }
 
-    console.log(playerOne);
-
     return () => clearInterval(intervalOnePlayer);
   });
 
@@ -109,17 +107,15 @@ const OnePlayer = () => {
                 {Questions[playerOne.nextQuestion].answers.map(
                   (question, i) => (
                     <div key={i}>
-                      {!playerOne.gameOver ? (
-                        <button
-                          disabled={playerOne.disabled}
-                          className="w-full py-2 text-white bg-black border rounded"
-                          onClick={(e) =>
-                            handlePlayerOneCorrectAnswer(e, question.isCorrect)
-                          }
-                        >
-                          {question.answer}
-                        </button>
-                      ) : null}
+                      <button
+                        disabled={playerOne.disabled}
+                        className="w-full py-2 text-white bg-black border rounded"
+                        onClick={(e) =>
+                          handlePlayerOneCorrectAnswer(e, question.isCorrect)
+                        }
+                      >
+                        {question.answer}
+                      </button>
                     </div>
                   )
                 )}
