@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { Utils } from "../utils/Utils";
 import Questions from "../questions";
 import { useRouter } from "next/router";
+import PlayerOneCounter from "./PlayerOneCounter";
 
 const OnePlayer = () => {
   const router = useRouter();
@@ -9,27 +10,6 @@ const OnePlayer = () => {
 
   useEffect(() => {
     document.title = `${playerOne.name} - Preguntas y respuestas`;
-
-    const intervalOnePlayer = setInterval(() => {
-      if (playerOne.timeRemaining > 0) {
-        setPlayerOne((prevState) => ({
-          ...prevState,
-          timeRemaining: prevState.timeRemaining - 1,
-        }));
-      }
-    }, 1000);
-
-    const time = timeDependsDificulty();
-
-    if (playerOne.timeRemaining === 0) {
-      setPlayerOne((prevState) => ({
-        ...prevState,
-        nextQuestion: prevState.nextQuestion + 1,
-        timeRemaining: time[playerOne.nextQuestion + 1],
-      }));
-    }
-
-    return () => clearInterval(intervalOnePlayer);
   });
 
   const randomQuestion = () => {
@@ -101,16 +81,18 @@ const OnePlayer = () => {
                     </div>
                   )
                 )}
-                <div>
+                <div className="flex justify-center">
                   {playerOne.timeRemaining <= 5 ? (
-                    <p>
+                    <p className="flex">
                       Tiempo restante:
-                      <span className="ml-1 text-base text-red-600">
-                        {playerOne.timeRemaining}
+                      <span className="text-base text-red-600">
+                        <PlayerOneCounter />
                       </span>
                     </p>
                   ) : (
-                    <p>Tiempo restante: {playerOne.timeRemaining}</p>
+                    <p className="flex">
+                      Tiempo restante: <PlayerOneCounter />
+                    </p>
                   )}
                 </div>
               </div>
