@@ -84,7 +84,7 @@ const TwoPlayers = () => {
         }));
         setPlayerTwo((prevState) => ({
           ...prevState,
-          timeRemaining: time[playerOne.nextQuestion],
+          timeRemaining: time[playerTwo.nextQuestion],
         }));
       }
     }, 100);
@@ -120,7 +120,7 @@ const TwoPlayers = () => {
   };
 
   const handlePlayerTwoCorrectAnswer = (e, isCorrect) => {
-    setPlayerTwoDisabled((prevState) => ({ ...prevState, disabled: true }));
+    setPlayerTwo((prevState) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
     const time = timeDependsDificulty();
     e.target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
@@ -132,7 +132,7 @@ const TwoPlayers = () => {
     setTimeout(() => {
       setPlayerTwo((prevState) => ({
         ...prevState,
-        nextQuestion: (prev) => prev + 1,
+        nextQuestion: playerTwo.nextQuestion + 1,
         timeRemaining: time[playerTwo.nextQuestion],
         disabled: false,
         turn: !playerTwo.turn,
