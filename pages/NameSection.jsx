@@ -16,7 +16,7 @@ const NameSection = () => {
 
   const setPlayerOneLocalStorage = (value) => {
     try {
-      setPlayerOne((prev) => ({ ...prev, name: value }));
+      setPlayerOne((prevState) => ({ ...prevState, name: value }));
       localStorage.setItem("namePlayerOne", value);
     } catch (err) {
       console.error(err);
@@ -25,7 +25,7 @@ const NameSection = () => {
 
   const setPlayerTwoLocalStorage = (value) => {
     try {
-      setPlayerTwo((prev) => ({ ...prev, name: value }));
+      setPlayerTwo((prevState) => ({ ...prevState, name: value }));
       localStorage.setItem("namePlayerTwo", value);
     } catch (err) {
       console.error(err);
