@@ -11,41 +11,51 @@ const TwoPlayers = () => {
   useEffect(() => {
     document.title = `${playerOne.name} / ${playerTwo.name} - Preguntas y respuestas`;
 
-    // const intervalAllPlayers = setInterval(() => {
-    //   if (playerOne.timeRemaining > 0) {
-    //     setPlayerOne((prevState) => ({
-    //       ...prevState,
-    //       timeRemaining: prevState.timeRemaining - 1,
-    //     }));
-    //   }
-    //   if (playerTwo.timeRemaining > 0) {
-    //     setPlayerTwo((prevState) => ({
-    //       ...prevState,
-    //       timeRemaining: prevState.timeRemaining - 1,
-    //     }));
-    //   }
-    // }, 1000);
+    const intervalAllPlayers = setInterval(() => {
+      if (playerOne.timeRemaining > 0) {
+        setPlayerOne((prevState) => ({
+          ...prevState,
+          timeRemaining: prevState.timeRemaining - 1,
+        }));
+      }
+      if (playerTwo.timeRemaining > 0) {
+        setPlayerTwo((prevState) => ({
+          ...prevState,
+          timeRemaining: prevState.timeRemaining - 1,
+        }));
+      }
+    }, 1000);
 
-    // const time = timeDependsDificulty();
+    const time = timeDependsDificulty();
 
-    // if (playerOne.timeRemaining === 0) {
-    //   setPlayerOne((prevState) => ({
-    //     ...prevState,
-    //     nextQuestion: prevState.nextQuestion + 1,
-    //     timeRemaining: time[playerOne.nextQuestion + 1],
-    //     turn: !playerOne.turn,
-    //   }));
-    //   setPlayerTwo((prevState) => ({ ...prevState, turn: !playerTwo.turn }));
-    // }
-    // if (playerTwo.timeRemaining === 0) {
-    //   setPlayerTwo((prevState) => ({
-    //     ...prevState,
-    //     nextQuestion: prevState.nextQuestion + 1,
-    //     timeRemaining: time[playerTwo.nextQuestion + 1],
-    //     turn: !playerTwo.turn,
-    //   }));
-    //   setPlayerOne((prevState) => ({ ...prevState, turn: !playerOne.turn }));
-    // }
+    if (playerOne.timeRemaining === 0) {
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        nextQuestion: prevState.nextQuestion + 1,
+        timeRemaining: time[playerOne.nextQuestion + 1],
+        turn: !playerOne.turn,
+        disabled: true,
+      }));
+      setPlayerTwo((prevState) => ({
+        ...prevState,
+        turn: !playerTwo.turn,
+        disabled: false,
+      }));
+    }
+    if (playerTwo.timeRemaining === 0) {
+      setPlayerTwo((prevState) => ({
+        ...prevState,
+        nextQuestion: prevState.nextQuestion + 1,
+        timeRemaining: time[playerTwo.nextQuestion + 1],
+        turn: !playerTwo.turn,
+        disabled: true,
+      }));
+      setPlayerOne((prevState) => ({
+        ...prevState,
+        turn: !playerOne.turn,
+        disabled: false,
+      }));
+    }
 
     // if (
     //   playerOne.timeRemaining === 0 &&
@@ -59,7 +69,7 @@ const TwoPlayers = () => {
     // )
     //   setPlayerTwo((prevState) => ({ ...prevState, gameOver: true }));
 
-    // return () => clearInterval(intervalAllPlayers);
+    return () => clearInterval(intervalAllPlayers);
   });
 
   const timeDependsDificulty = () => {
@@ -202,7 +212,8 @@ const TwoPlayers = () => {
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
                 <button
-                  disabled={!playerOne.gameOver}
+                  // disabled={!playerOne.gameOver}
+                  disabled={playerOne.gameOver}
                   className="w-full py-2 text-white bg-black border rounded"
                   onClick={() => {
                     router.push("/NameSection");
@@ -267,7 +278,8 @@ const TwoPlayers = () => {
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerTwo.points}</p>
                 <button
-                  disabled={!playerTwo.gameOver}
+                  // disabled={!playerTwo.gameOver}
+                  disabled={playerTwo.gameOver}
                   className="w-full py-2 text-white bg-black border rounded"
                   onClick={() => {
                     router.push("/NameSection");
