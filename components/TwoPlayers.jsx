@@ -28,7 +28,10 @@ const TwoPlayers = () => {
 
     const time = timeDependsDificulty();
 
-    if (playerOne.timeRemaining === 0) {
+    if (
+      playerOne.timeRemaining === 0 &&
+      playerOne.nextQuestion <= Questions.length
+    ) {
       setPlayerOne((prevState) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
@@ -42,7 +45,10 @@ const TwoPlayers = () => {
         disabled: false,
       }));
     }
-    if (playerTwo.timeRemaining === 0) {
+    if (
+      playerTwo.timeRemaining === 0 &&
+      playerOne.nextQuestion <= Questions.length
+    ) {
       setPlayerTwo((prevState) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
