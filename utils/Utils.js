@@ -38,12 +38,12 @@ export const UtilsProvider = ({ children }) => {
     }
   };
   const [totalPlayers, setTotalPlayers] = useState(null);
-  const [dificulty, setDificulty] = useState(whatDificulty());
+  const [dificulty, setDificulty] = useState("easy");
   const [playerOne, setPlayerOne] = useState({
     name: localStoragePlayerOne(),
     points: 0,
     nextQuestion: 0,
-    timeRemaining: 15,
+    timeRemaining: initialTime(dificulty),
     gameOver: false,
     disabled: false,
     turn: true,
@@ -52,7 +52,7 @@ export const UtilsProvider = ({ children }) => {
     name: localStoragePlayerTwo(),
     points: 0,
     nextQuestion: 0,
-    timeRemaining: 15,
+    timeRemaining: initialTime(dificulty),
     gameOver: false,
     disabled: false,
     turn: false,
