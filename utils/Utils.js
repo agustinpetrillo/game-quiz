@@ -37,6 +37,17 @@ export const UtilsProvider = ({ children }) => {
       }
     }
   };
+  const timeDependsDificulty = () => {
+    const time = 0;
+    if (dificulty === "easy") {
+      time = Questions.map((question) => question.easy_mode_time_response);
+    } else if (dificulty === "medium") {
+      time = Questions.map((question) => question.medium_mode_time_response);
+    } else {
+      time = Questions.map((question) => question.hard_mode_time_response);
+    }
+    return time;
+  };
   const [totalPlayers, setTotalPlayers] = useState(null);
   const [dificulty, setDificulty] = useState(whatDificulty());
   const [playerOne, setPlayerOne] = useState({
@@ -66,6 +77,7 @@ export const UtilsProvider = ({ children }) => {
     setPlayerOne,
     playerTwo,
     setPlayerTwo,
+    timeDependsDificulty,
   };
   return <Utils.Provider value={values}>{children}</Utils.Provider>;
 };

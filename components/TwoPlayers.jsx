@@ -5,8 +5,13 @@ import { useRouter } from "next/router";
 
 const TwoPlayers = () => {
   const router = useRouter();
-  const { playerOne, setPlayerOne, playerTwo, setPlayerTwo, dificulty } =
-    useContext(Utils);
+  const {
+    playerOne,
+    setPlayerOne,
+    playerTwo,
+    setPlayerTwo,
+    timeDependsDificulty,
+  } = useContext(Utils);
 
   useEffect(() => {
     document.title = `${playerOne.name} / ${playerTwo.name} - Preguntas y respuestas`;
@@ -77,18 +82,6 @@ const TwoPlayers = () => {
 
     return () => clearInterval(intervalAllPlayers);
   });
-
-  const timeDependsDificulty = () => {
-    const time = 0;
-    if (dificulty === "easy") {
-      time = Questions.map((question) => question.easy_mode_time_response);
-    } else if (dificulty === "medium") {
-      time = Questions.map((question) => question.medium_mode_time_response);
-    } else {
-      time = Questions.map((question) => question.hard_mode_time_response);
-    }
-    return time;
-  };
 
   const resetGame = () => {
     const time = timeDependsDificulty();

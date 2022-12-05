@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 const OnePlayer = () => {
   const router = useRouter();
-  const { playerOne, setPlayerOne, dificulty } = useContext(Utils);
+  const { playerOne, setPlayerOne, timeDependsDificulty } = useContext(Utils);
 
   useEffect(() => {
     document.title = `${playerOne.name} - Preguntas y respuestas`;
@@ -32,28 +32,10 @@ const OnePlayer = () => {
     return () => clearInterval(intervalOnePlayer);
   });
 
-  const timeDependsDificulty = () => {
-    const time = 0;
-    if (dificulty === "easy") {
-      time = Questions.map((question) => question.easy_mode_time_response);
-    } else if (dificulty === "medium") {
-      time = Questions.map((question) => question.medium_mode_time_response);
-    } else {
-      time = Questions.map((question) => question.hard_mode_time_response);
-    }
-    return time;
-  };
-
   const randomQuestion = () => {
-    const arrayUserQuestionResponse = [];
     const actualQuestion = Questions.map((question) => question.id);
     const randomQuestion =
       actualQuestion[Math.floor(Math.random() * actualQuestion.length)];
-    actualQuestion.slice(randomQuestion, randomQuestion + 1);
-    arrayUserQuestionResponse.push(randomQuestion);
-    // console.log(arrayUserQuestionResponse);
-    // return arrayUserQuestionResponse[playerOneNextQuestion];
-    console.log(arrayUserQuestionResponse);
     return randomQuestion;
   };
 
