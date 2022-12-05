@@ -5,7 +5,7 @@ const PlayerOneCounter = () => {
   const { playerOne, setPlayerOne, timeDependsDificulty } = useContext(Utils);
 
   useEffect(() => {
-    const intervalOnePlayer = setInterval(() => {
+    const intervalPlayerOne = setInterval(() => {
       if (playerOne.timeRemaining > 0) {
         setPlayerOne((prevState) => ({
           ...prevState,
@@ -24,7 +24,7 @@ const PlayerOneCounter = () => {
       }));
     }
 
-    return () => clearInterval(intervalOnePlayer);
+    return () => clearInterval(intervalPlayerOne);
   });
   return (
     <>

@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { Utils } from "../utils/Utils";
 import Questions from "../questions";
 import { useRouter } from "next/router";
+import PlayerOneCounter from "./PlayerOneCounter";
+import PlayerTwoCounter from "./playerTwoCounter";
 
 const TwoPlayers = () => {
   const router = useRouter();
@@ -16,57 +18,57 @@ const TwoPlayers = () => {
   useEffect(() => {
     document.title = `${playerOne.name} / ${playerTwo.name} - Preguntas y respuestas`;
 
-    const intervalAllPlayers = setInterval(() => {
-      if (playerOne.timeRemaining > 0) {
-        setPlayerOne((prevState) => ({
-          ...prevState,
-          timeRemaining: prevState.timeRemaining - 1,
-        }));
-      }
-      if (playerTwo.timeRemaining > 0) {
-        setPlayerTwo((prevState) => ({
-          ...prevState,
-          timeRemaining: prevState.timeRemaining - 1,
-        }));
-      }
-    }, 1000);
+    // const intervalAllPlayers = setInterval(() => {
+    //   if (playerOne.timeRemaining > 0) {
+    //     setPlayerOne((prevState) => ({
+    //       ...prevState,
+    //       timeRemaining: prevState.timeRemaining - 1,
+    //     }));
+    //   }
+    //   if (playerTwo.timeRemaining > 0) {
+    //     setPlayerTwo((prevState) => ({
+    //       ...prevState,
+    //       timeRemaining: prevState.timeRemaining - 1,
+    //     }));
+    //   }
+    // }, 1000);
 
-    const time = timeDependsDificulty();
+    // const time = timeDependsDificulty();
 
-    if (
-      playerOne.timeRemaining === 0 &&
-      playerOne.nextQuestion <= Questions.length
-    ) {
-      setPlayerOne((prevState) => ({
-        ...prevState,
-        nextQuestion: prevState.nextQuestion + 1,
-        timeRemaining: time[playerOne.nextQuestion + 1],
-        turn: !playerOne.turn,
-        disabled: true,
-      }));
-      setPlayerTwo((prevState) => ({
-        ...prevState,
-        turn: !playerTwo.turn,
-        disabled: false,
-      }));
-    }
-    if (
-      playerTwo.timeRemaining === 0 &&
-      playerOne.nextQuestion <= Questions.length
-    ) {
-      setPlayerTwo((prevState) => ({
-        ...prevState,
-        nextQuestion: prevState.nextQuestion + 1,
-        timeRemaining: time[playerTwo.nextQuestion + 1],
-        turn: !playerTwo.turn,
-        disabled: true,
-      }));
-      setPlayerOne((prevState) => ({
-        ...prevState,
-        turn: !playerOne.turn,
-        disabled: false,
-      }));
-    }
+    // if (
+    //   playerOne.timeRemaining === 0 &&
+    //   playerOne.nextQuestion <= Questions.length
+    // ) {
+    //   setPlayerOne((prevState) => ({
+    //     ...prevState,
+    //     nextQuestion: prevState.nextQuestion + 1,
+    //     timeRemaining: time[playerOne.nextQuestion + 1],
+    //     turn: !playerOne.turn,
+    //     disabled: true,
+    //   }));
+    //   setPlayerTwo((prevState) => ({
+    //     ...prevState,
+    //     turn: !playerTwo.turn,
+    //     disabled: false,
+    //   }));
+    // }
+    // if (
+    //   playerTwo.timeRemaining === 0 &&
+    //   playerTwo.nextQuestion <= Questions.length
+    // ) {
+    //   setPlayerTwo((prevState) => ({
+    //     ...prevState,
+    //     nextQuestion: prevState.nextQuestion + 1,
+    //     timeRemaining: time[playerTwo.nextQuestion + 1],
+    //     turn: !playerTwo.turn,
+    //     disabled: true,
+    //   }));
+    //   setPlayerOne((prevState) => ({
+    //     ...prevState,
+    //     turn: !playerOne.turn,
+    //     disabled: false,
+    //   }));
+    // }
 
     // if (
     //   playerOne.timeRemaining === 0 &&
@@ -80,7 +82,7 @@ const TwoPlayers = () => {
     // )
     //   setPlayerTwo((prevState) => ({ ...prevState, gameOver: true }));
 
-    return () => clearInterval(intervalAllPlayers);
+    // return () => clearInterval(intervalAllPlayers);
   });
 
   const resetGame = () => {
@@ -196,11 +198,13 @@ const TwoPlayers = () => {
                       <p className="ml-2">
                         Tiempo restante:
                         <span className="ml-1 text-base text-red-600">
-                          {playerOne.timeRemaining}
+                          <PlayerOneCounter />
                         </span>
                       </p>
                     ) : (
-                      <p>Tiempo restante: {playerOne.timeRemaining}</p>
+                      <p>
+                        Tiempo restante: <PlayerOneCounter />
+                      </p>
                     )}
                   </div>
                 </div>
@@ -262,11 +266,13 @@ const TwoPlayers = () => {
                       <p>
                         Tiempo restante:
                         <span className="ml-1 text-base text-red-600">
-                          {playerTwo.timeRemaining}
+                          <PlayerTwoCounter />
                         </span>
                       </p>
                     ) : (
-                      <p>Tiempo restante: {playerTwo.timeRemaining}</p>
+                      <p>
+                        Tiempo restante: <PlayerTwoCounter />
+                      </p>
                     )}
                   </div>
                 </div>
