@@ -43,7 +43,7 @@ const NameSection = () => {
           )}
           <p className="mb-1">Ingresá tu nombre:</p>
           <input
-            className="text-center border border-gray-500 rounded"
+            className="text-center border-2 bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
             type="text"
             placeholder="Nombre"
             onChange={(e) => setPlayerOneLocalStorage(e.target.value)}
@@ -52,8 +52,8 @@ const NameSection = () => {
             <h2 className="mt-8 mb-2">Dificultad:</h2>
             <div className="flex space-x-3 text-white">
               <button
-                className={`px-4 py-2 bg-gray-800 ${
-                  isSelected[0] ? "bg-orange-500" : null
+                className={`px-4 py-2 bg-[#5D1027] ${
+                  isSelected[0] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
                   localStorage.setItem("easy", setDificulty("easy"));
@@ -63,8 +63,8 @@ const NameSection = () => {
                 Fácil
               </button>
               <button
-                className={`px-4 py-2 bg-gray-800 ${
-                  isSelected[1] ? "bg-orange-500" : null
+                className={`px-4 py-2 bg-[#5D1027] ${
+                  isSelected[1] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
                   localStorage.setItem("medium", setDificulty("medium"));
@@ -74,8 +74,8 @@ const NameSection = () => {
                 Medio
               </button>
               <button
-                className={`px-4 py-2 bg-gray-800 ${
-                  isSelected[2] ? "bg-orange-500" : null
+                className={`px-4 py-2 bg-[#5D1027] ${
+                  isSelected[2] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
                   localStorage.setItem("hard", setDificulty("hard"));
@@ -88,13 +88,13 @@ const NameSection = () => {
           </div>
           <div className="flex space-x-5">
             <button
-              className="py-2 mt-8 text-white bg-black rounded px-7"
+              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => router.push("/Game")}
             >
               Jugar
             </button>
             <button
-              className="py-2 mt-8 text-white bg-black rounded px-7"
+              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => router.push("/")}
             >
               Atrás
@@ -120,7 +120,7 @@ const NameSection = () => {
               )}
               <p className="mb-1">Ingresá tu nombre:</p>
               <input
-                className="text-center border border-gray-500 rounded"
+                className="text-center border-2 bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
                 type="text"
                 placeholder="Nombre"
                 onChange={(e) => setPlayerOneLocalStorage(e.target.value)}
@@ -138,7 +138,7 @@ const NameSection = () => {
               )}
               <p className="mb-1">Ingresá tu nombre:</p>
               <input
-                className="text-center border border-gray-500 rounded"
+                className="text-center border-2 bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
                 type="text"
                 placeholder="Nombre"
                 onChange={(e) => setPlayerTwoLocalStorage(e.target.value)}
@@ -149,8 +149,8 @@ const NameSection = () => {
             <h2 className="mt-8 mb-2">Dificultad:</h2>
             <div className="flex space-x-3 text-white">
               <button
-                className={`px-4 py-2 bg-gray-800 ${
-                  isSelected[0] ? "bg-orange-500" : null
+                className={`px-4 py-2 bg-[#5D1027] ${
+                  isSelected[0] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
                   localStorage.setItem("easy", setDificulty("easy"));
@@ -160,8 +160,8 @@ const NameSection = () => {
                 Fácil
               </button>
               <button
-                className={`px-4 py-2 bg-gray-800 ${
-                  isSelected[1] ? "bg-orange-500" : null
+                className={`px-4 py-2 bg-[#5D1027] ${
+                  isSelected[1] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
                   localStorage.setItem("medium", setDificulty("medium"));
@@ -171,8 +171,8 @@ const NameSection = () => {
                 Medio
               </button>
               <button
-                className={`px-4 py-2 bg-gray-800 ${
-                  isSelected[2] ? "bg-orange-500" : null
+                className={`px-4 py-2 bg-[#5D1027] ${
+                  isSelected[2] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
                   localStorage.setItem("hard", setDificulty("hard"));
@@ -185,13 +185,13 @@ const NameSection = () => {
           </div>
           <div className="flex mt-5 space-x-5">
             <button
-              className="py-2 mt-8 text-white bg-black rounded px-7"
+              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => router.push("/Game")}
             >
               Jugar
             </button>
             <button
-              className="py-2 mt-8 text-white bg-black rounded px-7"
+              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => {
                 router.push("/");
               }}
