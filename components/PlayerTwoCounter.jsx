@@ -13,12 +13,11 @@ const PlayerTwoCounter = () => {
           timeRemaining: prevState.timeRemaining - 1,
         }));
       }
-      if (playerOne.turn) {
+      if (playerOne.turn)
         setPlayerTwo((prevState) => ({
           ...prevState,
           timeRemaining: time[playerTwo.nextQuestion],
         }));
-      }
     }, 1000);
 
     const time = timeDependsDificulty();
