@@ -64,7 +64,7 @@ const OnePlayer = () => {
                     <div key={i}>
                       <button
                         disabled={playerOne.disabled}
-                        className="w-full py-2 text-white bg-black border rounded"
+                        className="w-full py-2 text-white transition-all duration-100 bg-black border rounded-lg hover:bg-gray-900"
                         onClick={(e) =>
                           handlePlayerOneCorrectAnswer(e, question.isCorrect)
                         }

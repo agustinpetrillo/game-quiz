@@ -182,7 +182,7 @@ const TwoPlayers = () => {
                       <div key={i}>
                         <button
                           disabled={playerOne.disabled}
-                          className="w-full py-2 text-white bg-black border rounded"
+                          className="w-full py-2 text-white transition-all duration-100 bg-black border rounded-lg hover:bg-gray-900"
                           onClick={(e) =>
                             handlePlayerOneCorrectAnswer(e, question.isCorrect)
                           }
@@ -217,7 +217,7 @@ const TwoPlayers = () => {
                 <button
                   // disabled={!playerOne.gameOver}
                   disabled={playerOne.gameOver}
-                  className="w-full py-2 text-white bg-black border rounded"
+                  className="w-full py-2 text-white transition-all duration-100 bg-black border rounded hover:bg-gray-900"
                   onClick={() => {
                     router.push("/NameSection");
                     resetGame();
@@ -250,7 +250,7 @@ const TwoPlayers = () => {
                       <div key={i}>
                         <button
                           disabled={playerTwo.disabled}
-                          className="w-full py-2 text-white bg-black border rounded"
+                          className="w-full py-2 text-white bg-black border rounded-lg"
                           onClick={(e) =>
                             handlePlayerTwoCorrectAnswer(e, question.isCorrect)
                           }
