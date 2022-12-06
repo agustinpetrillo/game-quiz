@@ -226,7 +226,7 @@ const TwoPlayers = () => {
             )}
           </div>
           <div className="flex flex-col max-w-sm">
-            <h1 className="mb-20">
+            <h1 className="mb-12">
               Jugador: <span className="text-blue-600">{playerTwo.name}</span>
             </h1>
             {Questions.slice(
@@ -294,7 +294,7 @@ const TwoPlayers = () => {
         {playerOne.nextQuestion >= Questions.length &&
           playerTwo.nextQuestion >= Questions.length && (
             <div className="p-5 mt-20 border-2 border-black rounded">
-              {playerOne.points > playerTwo.points ? (
+              {playerOne.points > playerTwo.points && (
                 <div>
                   <h1>
                     ¡<span className="text-red-600">{playerOne.name}</span> le
@@ -304,7 +304,8 @@ const TwoPlayers = () => {
                   </h1>
                   <h1>Total: {playerOne.points}.</h1>
                 </div>
-              ) : (
+              )}
+              {playerTwo.points > playerOne.points && (
                 <div>
                   <h1>
                     ¡<span className="text-blue-600">{playerTwo.name}</span> le
@@ -315,11 +316,7 @@ const TwoPlayers = () => {
                   <h1>Total: {playerTwo.points}.</h1>
                 </div>
               )}
-              {playerOne.points === playerTwo.points && (
-                <div>
-                  <h1>¡EMPATE!</h1>
-                </div>
-              )}
+              {playerOne.points === playerTwo.points && <h1>¡EMPATE!</h1>}
             </div>
           )}
       </div>

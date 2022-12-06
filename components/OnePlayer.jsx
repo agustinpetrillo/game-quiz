@@ -97,7 +97,7 @@ const OnePlayer = () => {
               <h1>Juego finalizado.</h1>
               <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
               <button
-                className="w-full py-2 text-white bg-black border rounded"
+                className="w-full py-2 text-white transition-all duration-150 bg-black border rounded-lg hover:bg-gray-900"
                 onClick={() => {
                   router.push("/NameSection");
                   resetGame();
