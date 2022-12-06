@@ -3,7 +3,7 @@ import { Utils } from "../utils/Utils";
 import Questions from "../questions";
 import { useRouter } from "next/router";
 import PlayerOneCounter from "./PlayerOneCounter";
-import PlayerTwoCounter from "./playerTwoCounter";
+import PlayerTwoCounter from "./PlayerTwoCounter";
 
 const TwoPlayers = () => {
   const router = useRouter();
