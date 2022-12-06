@@ -19,12 +19,11 @@ const PlayerOneCounter = () => {
         }));
       }
       if (totalPlayers === 2)
-        if (playerTwo.turn) {
+        if (playerTwo.turn)
           setPlayerOne((prevState) => ({
             ...prevState,
             timeRemaining: time[playerOne.nextQuestion],
           }));
-        }
     }, 1000);
 
     const time = timeDependsDificulty();
