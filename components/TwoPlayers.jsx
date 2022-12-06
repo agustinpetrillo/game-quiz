@@ -244,7 +244,7 @@ const TwoPlayers = () => {
                       <div key={i}>
                         <button
                           disabled={playerTwo.disabled}
-                          className="w-full py-2 text-white bg-black border rounded-lg"
+                          className="w-full py-2 text-white transition-all duration-100 bg-black border rounded hover:bg-gray-900"
                           onClick={(e) =>
                             handlePlayerTwoCorrectAnswer(e, question.isCorrect)
                           }
@@ -291,7 +291,7 @@ const TwoPlayers = () => {
             )}
           </div>
         </div>
-        {playerOne.nextQuestion &&
+        {playerOne.nextQuestion >= Questions.length &&
           playerTwo.nextQuestion >= Questions.length && (
             <div className="p-5 mt-20 border-2 border-black rounded">
               {playerOne.points > playerTwo.points ? (
