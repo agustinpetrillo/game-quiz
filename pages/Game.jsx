@@ -19,7 +19,7 @@ const MainSection = () => {
     return <TwoPlayers />;
   } else {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center min-h-screen dark:bg-[#241e4e]">
         <h1 className="mb-10">
           <span className="font-bold text-red-500 underline">ERROR</span> -
           CANTIDAD DE JUGADORES SUPERIOR AL PERMITIDO
