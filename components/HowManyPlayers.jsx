@@ -9,7 +9,7 @@ const HowManyPlayers = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center min-h-screen dark:bg-[#241e4e]">
-        <h1>Bienvenido/s a preguntas y respuestas de Fecheche</h1>
+        <h1>Bienvenido/s a preguntas y respuestas de Agustin Petrillo</h1>
         <p className="mt-5">Cantidad de jugadores:</p>
         <div className="flex mt-10 space-x-20">
           <button
