@@ -2,7 +2,13 @@ import { useContext, useEffect } from "react";
 import { Utils } from "../utils/Utils";
 
 const PlayerOneCounter = () => {
-  const { playerOne, setPlayerOne, timeDependsDificulty } = useContext(Utils);
+  const {
+    playerOne,
+    setPlayerOne,
+    playerTwo,
+    totalPlayers,
+    timeDependsDificulty,
+  } = useContext(Utils);
 
   useEffect(() => {
     const intervalPlayerOne = setInterval(() => {
@@ -11,6 +17,14 @@ const PlayerOneCounter = () => {
           ...prevState,
           timeRemaining: prevState.timeRemaining - 1,
         }));
+      }
+      if (totalPlayers === 2) {
+        if (playerTwo.turn) {
+          setPlayerOne((prevState) => ({
+            ...prevState,
+            timeRemaining: time[playerOne.nextQuestion],
+          }));
+        }
       }
     }, 1000);
 
