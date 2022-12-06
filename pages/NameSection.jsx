@@ -35,7 +35,7 @@ const NameSection = () => {
   if (totalPlayers === 1) {
     return (
       <>
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center justify-center min-h-screen dark:bg-[#241e4e]">
           {playerOne.name === null ? (
             <h1 className="mb-3">¡Bienvenido!</h1>
           ) : (
@@ -43,7 +43,7 @@ const NameSection = () => {
           )}
           <p className="mb-1">Ingresá tu nombre:</p>
           <input
-            className="text-center border-2 bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
+            className="text-center border-2 dark:bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
             type="text"
             placeholder="Nombre"
             onChange={(e) => setPlayerOneLocalStorage(e.target.value)}
@@ -52,7 +52,7 @@ const NameSection = () => {
             <h2 className="mt-8 mb-2">Dificultad:</h2>
             <div className="flex space-x-3 text-white">
               <button
-                className={`px-4 py-2 bg-[#5D1027] ${
+                className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
                   isSelected[0] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
@@ -63,7 +63,7 @@ const NameSection = () => {
                 Fácil
               </button>
               <button
-                className={`px-4 py-2 bg-[#5D1027] ${
+                className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
                   isSelected[1] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
@@ -74,7 +74,7 @@ const NameSection = () => {
                 Medio
               </button>
               <button
-                className={`px-4 py-2 bg-[#5D1027] ${
+                className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
                   isSelected[2] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
@@ -88,13 +88,13 @@ const NameSection = () => {
           </div>
           <div className="flex space-x-5">
             <button
-              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
+              className="py-2 mt-8 bg-black text-white dark:bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => router.push("/Game")}
             >
               Jugar
             </button>
             <button
-              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
+              className="py-2 mt-8 bg-black text-white dark:bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => router.push("/")}
             >
               Atrás
@@ -106,7 +106,7 @@ const NameSection = () => {
   } else {
     return (
       <>
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center justify-center min-h-screen dark:bg-[#241e4e]">
           <div className="flex justify-center space-x-20">
             <div className="flex flex-col items-center justify-center">
               <h2 className="text-lg text-blue-600 mb-7">Jugador 1</h2>
@@ -120,7 +120,7 @@ const NameSection = () => {
               )}
               <p className="mb-1">Ingresá tu nombre:</p>
               <input
-                className="text-center border-2 bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
+                className="text-center border-2 dark:bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
                 type="text"
                 placeholder="Nombre"
                 onChange={(e) => setPlayerOneLocalStorage(e.target.value)}
@@ -138,7 +138,7 @@ const NameSection = () => {
               )}
               <p className="mb-1">Ingresá tu nombre:</p>
               <input
-                className="text-center border-2 bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
+                className="text-center border-2 dark:bg-[#5D1027] border-[#331B45] rounded-lg p-2 outline-none"
                 type="text"
                 placeholder="Nombre"
                 onChange={(e) => setPlayerTwoLocalStorage(e.target.value)}
@@ -149,7 +149,7 @@ const NameSection = () => {
             <h2 className="mt-8 mb-2">Dificultad:</h2>
             <div className="flex space-x-3 text-white">
               <button
-                className={`px-4 py-2 bg-[#5D1027] ${
+                className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
                   isSelected[0] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
@@ -160,7 +160,7 @@ const NameSection = () => {
                 Fácil
               </button>
               <button
-                className={`px-4 py-2 bg-[#5D1027] ${
+                className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
                   isSelected[1] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
@@ -171,7 +171,7 @@ const NameSection = () => {
                 Medio
               </button>
               <button
-                className={`px-4 py-2 bg-[#5D1027] ${
+                className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
                   isSelected[2] ? "!bg-[#CE6C47]" : null
                 }`}
                 onClick={() => {
@@ -185,13 +185,13 @@ const NameSection = () => {
           </div>
           <div className="flex mt-5 space-x-5">
             <button
-              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
+              className="py-2 mt-8 bg-black text-white dark:bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => router.push("/Game")}
             >
               Jugar
             </button>
             <button
-              className="py-2 mt-8 text-white bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
+              className="py-2 mt-8 bg-black text-white dark:bg-[#5D1027] border hover:border-[#5D1027] transition-all duration-100 rounded px-7"
               onClick={() => {
                 router.push("/");
               }}

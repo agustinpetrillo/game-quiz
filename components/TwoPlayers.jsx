@@ -158,10 +158,10 @@ const TwoPlayers = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center my-10 text-center">
+      <div className="flex flex-col items-center justify-center min-h-screen text-center dark:bg-[#241e4e]">
         <div className="flex items-center justify-between space-x-14">
           <div className="flex flex-col max-w-sm">
-            <h1 className="mb-20">
+            <h1 className="mb-12">
               Jugador: <span className="text-red-600">{playerOne.name}</span>
             </h1>
             {Questions.slice(

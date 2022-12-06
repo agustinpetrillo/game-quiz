@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  background-color: #241e4e;
-  color: rgb(236, 236, 236);
-}
-
 @layer base {
   h1,
   span {
     @apply text-4xl;
+  }
+  button {
+    @apply text-black dark:text-white;
   }
 }

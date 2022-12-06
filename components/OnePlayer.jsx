@@ -46,9 +46,9 @@ const OnePlayer = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center my-10 text-center">
+      <div className="flex flex-col items-center justify-center min-h-screen text-center dark:bg-[#241e4e]">
         <div className="max-w-lg">
-          <h1 className="mb-20">Jugador: {playerOne.name}</h1>
+          <h1 className="mb-12">Jugador: {playerOne.name}</h1>
           {Questions.slice(
             playerOne.nextQuestion,
             playerOne.nextQuestion + 1
