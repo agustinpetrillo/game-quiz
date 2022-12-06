@@ -13,13 +13,6 @@ const localStoragePlayerTwo = () => {
     return localStorage.getItem("namePlayerTwo");
 };
 
-const randomQuestion = () => {
-  const actualQuestion = Questions.map((question) => question.id);
-  const randomQuestion =
-    actualQuestion[Math.floor(Math.random() * actualQuestion.length)];
-  return randomQuestion;
-};
-
 const initialTime = (dificulty) => {
   let time = 0;
   if (dificulty === "easy") {
@@ -85,7 +78,6 @@ export const UtilsProvider = ({ children }) => {
     playerTwo,
     setPlayerTwo,
     timeDependsDificulty,
-    randomQuestion,
   };
   return <Utils.Provider value={values}>{children}</Utils.Provider>;
 };

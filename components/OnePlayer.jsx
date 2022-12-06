@@ -6,8 +6,7 @@ import PlayerOneCounter from "./PlayerOneCounter";
 
 const OnePlayer = () => {
   const router = useRouter();
-  const { playerOne, setPlayerOne, timeDependsDificulty, randomQuestion } =
-    useContext(Utils);
+  const { playerOne, setPlayerOne, timeDependsDificulty } = useContext(Utils);
 
   useEffect(() => {
     document.title = `${playerOne.name} - Preguntas y respuestas`;
