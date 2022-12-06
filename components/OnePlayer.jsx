@@ -64,7 +64,7 @@ const OnePlayer = () => {
                     <div key={i}>
                       <button
                         disabled={playerOne.disabled}
-                        className="w-full py-2 text-white transition-all duration-100 bg-black border rounded-lg hover:bg-gray-900"
+                        className="w-full py-2 text-white transition-all duration-150 bg-black border rounded-lg hover:bg-gray-900"
                         onClick={(e) =>
                           handlePlayerOneCorrectAnswer(e, question.isCorrect)
                         }
@@ -92,7 +92,7 @@ const OnePlayer = () => {
               <h2 className="mt-5 text-2xl">Puntos: {playerOne.points}</h2>
             </div>
           ))}
-          {playerOne.nextQuestion >= Questions.length ? (
+          {playerOne.nextQuestion >= Questions.length && (
             <div>
               <h1>Juego finalizado.</h1>
               <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
@@ -106,7 +106,7 @@ const OnePlayer = () => {
                 Volver a jugar
               </button>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
     </>

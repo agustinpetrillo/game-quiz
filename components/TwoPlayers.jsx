@@ -168,10 +168,7 @@ const TwoPlayers = () => {
               playerOne.nextQuestion,
               playerOne.nextQuestion + 1
             ).map((question) => (
-              <div
-                key={question.id}
-                className={!playerOne.turn ? `blur-md` : null}
-              >
+              <div key={question.id} className={!playerOne.turn && `blur-md`}>
                 <p>
                   Pregunta nº{question.id + 1} de {Questions.length}
                 </p>
@@ -210,7 +207,7 @@ const TwoPlayers = () => {
                 </div>
               </div>
             ))}
-            {playerOne.nextQuestion >= Questions.length ? (
+            {playerOne.nextQuestion >= Questions.length && (
               <div>
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerOne.points}</p>
@@ -226,7 +223,7 @@ const TwoPlayers = () => {
                   Volver a jugar
                 </button>
               </div>
-            ) : null}
+            )}
           </div>
           <div className="flex flex-col max-w-sm">
             <h1 className="mb-20">
@@ -236,10 +233,7 @@ const TwoPlayers = () => {
               playerTwo.nextQuestion,
               playerTwo.nextQuestion + 1
             ).map((question) => (
-              <div
-                key={question.id}
-                className={!playerTwo.turn ? `blur-md` : null}
-              >
+              <div key={question.id} className={!playerTwo.turn && `blur-md`}>
                 <p>
                   Pregunta nº{question.id + 1} de {Questions.length}
                 </p>
@@ -278,7 +272,7 @@ const TwoPlayers = () => {
                 </div>
               </div>
             ))}
-            {playerTwo.nextQuestion >= Questions.length ? (
+            {playerTwo.nextQuestion >= Questions.length && (
               <div>
                 <h1>Juego finalizado.</h1>
                 <p className="mb-6">Puntos conseguidos: {playerTwo.points}</p>
@@ -294,38 +288,40 @@ const TwoPlayers = () => {
                   Volver a jugar
                 </button>
               </div>
-            ) : null}
+            )}
           </div>
         </div>
         {playerOne.nextQuestion &&
-        playerTwo.nextQuestion >= Questions.length ? (
-          <div className="p-5 mt-20 border-2 border-black rounded">
-            {playerOne.points > playerTwo.points ? (
-              <div>
-                <h1>
-                  ¡<span className="text-red-600">{playerOne.name}</span> le
-                  ganó a <span className="text-blue-600">{playerTwo.name}</span>{" "}
-                  por {playerOne.points - playerTwo.points} puntos!
-                </h1>
-                <h1>Total: {playerOne.points}.</h1>
-              </div>
-            ) : (
-              <div>
-                <h1>
-                  ¡<span className="text-blue-600">{playerTwo.name}</span> le
-                  ganó a <span className="text-red-600">{playerOne.name}</span>{" "}
-                  por {playerTwo.points - playerOne.points} puntos!
-                </h1>
-                <h1>Total: {playerTwo.points}.</h1>
-              </div>
-            )}
-            {playerOne.points === playerTwo.points ? (
-              <div>
-                <h1>¡EMPATE!</h1>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+          playerTwo.nextQuestion >= Questions.length && (
+            <div className="p-5 mt-20 border-2 border-black rounded">
+              {playerOne.points > playerTwo.points ? (
+                <div>
+                  <h1>
+                    ¡<span className="text-red-600">{playerOne.name}</span> le
+                    ganó a{" "}
+                    <span className="text-blue-600">{playerTwo.name}</span> por{" "}
+                    {playerOne.points - playerTwo.points} puntos!
+                  </h1>
+                  <h1>Total: {playerOne.points}.</h1>
+                </div>
+              ) : (
+                <div>
+                  <h1>
+                    ¡<span className="text-blue-600">{playerTwo.name}</span> le
+                    ganó a{" "}
+                    <span className="text-red-600">{playerOne.name}</span> por{" "}
+                    {playerTwo.points - playerOne.points} puntos!
+                  </h1>
+                  <h1>Total: {playerTwo.points}.</h1>
+                </div>
+              )}
+              {playerOne.points === playerTwo.points && (
+                <div>
+                  <h1>¡EMPATE!</h1>
+                </div>
+              )}
+            </div>
+          )}
       </div>
     </>
   );

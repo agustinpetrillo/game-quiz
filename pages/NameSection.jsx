@@ -53,7 +53,7 @@ const NameSection = () => {
             <div className="flex space-x-3 text-white">
               <button
                 className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
-                  isSelected[0] ? "!bg-[#CE6C47]" : null
+                  isSelected[0] && "!bg-[#CE6C47]"
                 }`}
                 onClick={() => {
                   localStorage.setItem("easy", setDificulty("easy"));
@@ -64,7 +64,7 @@ const NameSection = () => {
               </button>
               <button
                 className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
-                  isSelected[1] ? "!bg-[#CE6C47]" : null
+                  isSelected[1] && "!bg-[#CE6C47]"
                 }`}
                 onClick={() => {
                   localStorage.setItem("medium", setDificulty("medium"));
@@ -75,7 +75,7 @@ const NameSection = () => {
               </button>
               <button
                 className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
-                  isSelected[2] ? "!bg-[#CE6C47]" : null
+                  isSelected[2] && "!bg-[#CE6C47]"
                 }`}
                 onClick={() => {
                   localStorage.setItem("hard", setDificulty("hard"));
@@ -150,7 +150,7 @@ const NameSection = () => {
             <div className="flex space-x-3 text-white">
               <button
                 className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
-                  isSelected[0] ? "!bg-[#CE6C47]" : null
+                  isSelected[0] && "!bg-[#CE6C47]"
                 }`}
                 onClick={() => {
                   localStorage.setItem("easy", setDificulty("easy"));
@@ -161,7 +161,7 @@ const NameSection = () => {
               </button>
               <button
                 className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
-                  isSelected[1] ? "!bg-[#CE6C47]" : null
+                  isSelected[1] && "!bg-[#CE6C47]"
                 }`}
                 onClick={() => {
                   localStorage.setItem("medium", setDificulty("medium"));
@@ -172,7 +172,7 @@ const NameSection = () => {
               </button>
               <button
                 className={`px-4 py-2 dark:bg-[#5D1027] bg-black text-white ${
-                  isSelected[2] ? "!bg-[#CE6C47]" : null
+                  isSelected[2] && "!bg-[#CE6C47]"
                 }`}
                 onClick={() => {
                   localStorage.setItem("hard", setDificulty("hard"));
