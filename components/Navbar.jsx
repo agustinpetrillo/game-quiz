@@ -6,7 +6,7 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   return (
     <>
-      <div className="fixed flex items-center justify-end w-full min-h-0 px-10 py-2 dark:bg-[#241e4e]">
+      <div className="fixed flex items-center justify-end w-full min-h-0 px-10 py-4 dark:bg-[#241e4e]">
         <div className="flex space-x-4">
           <MdDarkMode size={25} />
           {theme === "light" ? (
