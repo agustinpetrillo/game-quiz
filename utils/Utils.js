@@ -3,12 +3,12 @@ import Questions from "../questions";
 
 export const Utils = createContext();
 
-const localStoragePlayerOne = () => {
+const localStoragePlayerOneName = () => {
   if (typeof window !== "undefined")
     return localStorage.getItem("namePlayerOne");
 };
 
-const localStoragePlayerTwo = () => {
+const localStoragePlayerTwoName = () => {
   if (typeof window !== "undefined")
     return localStorage.getItem("namePlayerTwo");
 };
@@ -51,7 +51,7 @@ export const UtilsProvider = ({ children }) => {
   const [totalPlayers, setTotalPlayers] = useState(null);
   const [dificulty, setDificulty] = useState(whatDificulty());
   const [playerOne, setPlayerOne] = useState({
-    name: localStoragePlayerOne(),
+    name: localStoragePlayerOneName(),
     points: 0,
     nextQuestion: 0,
     timeRemaining: initialTime(dificulty),
@@ -60,7 +60,7 @@ export const UtilsProvider = ({ children }) => {
     turn: true,
   });
   const [playerTwo, setPlayerTwo] = useState({
-    name: localStoragePlayerTwo(),
+    name: localStoragePlayerTwoName(),
     points: 0,
     nextQuestion: 0,
     timeRemaining: initialTime(dificulty),
