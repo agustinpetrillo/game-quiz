@@ -6,19 +6,19 @@ import PlayerOneCounter from "./PlayerOneCounter";
 
 const OnePlayer = () => {
   const router = useRouter();
-  const { playerOne, setPlayerOne, timeDependsDificulty } = useContext(Utils);
+  const { playerOne, setPlayerOne, timeDependsDificulty, randomQuestion } =
+    useContext(Utils);
 
   useEffect(() => {
     document.title = `${playerOne.name} - Preguntas y respuestas`;
   });
 
   const resetGame = () => {
-    const time = timeDependsDificulty();
     setTimeout(() => {
       setPlayerOne((prevState) => ({
         ...prevState,
         nextQuestion: 0,
-        timeRemaining: time[playerOne.nextQuestion],
+        timeRemaining: timeDependsDificulty()[playerOne.nextQuestion],
         points: 0,
       }));
     }, 100);
@@ -27,7 +27,6 @@ const OnePlayer = () => {
   const handlePlayerOneCorrectAnswer = (e, isCorrect) => {
     setPlayerOne((prevState) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
-    const time = timeDependsDificulty();
     e.target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
       setPlayerOne((prevState) => ({
@@ -38,7 +37,7 @@ const OnePlayer = () => {
       setPlayerOne((prevState) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
-        timeRemaining: time[playerOne.nextQuestion],
+        timeRemaining: timeDependsDificulty()[playerOne.nextQuestion],
         disabled: false,
       }));
     }, 500);

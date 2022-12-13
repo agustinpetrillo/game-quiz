@@ -165,8 +165,8 @@ const TwoPlayers = () => {
               Jugador: <span className="text-red-600">{playerOne.name}</span>
             </h1>
             {Questions.slice(
-              playerOne.nextQuestion,
-              playerOne.nextQuestion + 1
+              randomQuestion(playerOne.nextQuestion),
+              randomQuestion(playerOne.nextQuestion + 1)
             ).map((question) => (
               <div key={question.id} className={!playerOne.turn && `blur-md`}>
                 <p>
