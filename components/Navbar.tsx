@@ -13,11 +13,13 @@ const Navbar = () => {
             <BsToggleOn
               size={25}
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="cursor-pointer"
             />
           ) : (
             <BsToggleOff
               size={25}
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="cursor-pointer"
             />
           )}
           <BsFillSunFill size={25} />
