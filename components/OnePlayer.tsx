@@ -15,7 +15,7 @@ const OnePlayer = () => {
 
   const resetGame = () => {
     setTimeout(() => {
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: object[]) => ({
         ...prevState,
         nextQuestion: 0,
         timeRemaining: timeDependsDificulty()[playerOne.nextQuestion],
@@ -24,17 +24,21 @@ const OnePlayer = () => {
     }, 100);
   };
 
-  const handlePlayerOneCorrectAnswer = (e, isCorrect) => {
-    setPlayerOne((prevState) => ({ ...prevState, disabled: true }));
+  const handlePlayerOneCorrectAnswer = (
+    e: React.MouseEvent,
+    isCorrect: boolean
+  ) => {
+    const target = e.target as Element;
+    setPlayerOne((prevState: object[]) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
-    e.target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
+    target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: object[]) => ({
         ...prevState,
         points: playerOne.points + correctPoints[playerOne.nextQuestion],
       }));
     setTimeout(() => {
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: any) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: timeDependsDificulty()[playerOne.nextQuestion],

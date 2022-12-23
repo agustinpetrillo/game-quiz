@@ -90,13 +90,13 @@ const TwoPlayers = () => {
     setTimeout(() => {
       // if (playerTwo.gameOver || playerOne.gameOver) {
       if (!playerTwo.gameOver || !playerOne.gameOver) {
-        setPlayerOne((prevState) => ({
+        setPlayerOne((prevState: object[]) => ({
           ...prevState,
           timeRemaining: time[playerOne.nextQuestion],
           nextQuestion: 0,
           points: 0,
         }));
-        setPlayerTwo((prevState) => ({
+        setPlayerTwo((prevState: object[]) => ({
           ...prevState,
           timeRemaining: time[playerTwo.nextQuestion],
           nextQuestion: 0,
@@ -106,24 +106,28 @@ const TwoPlayers = () => {
     }, 100);
   };
 
-  const handlePlayerOneCorrectAnswer = (e, isCorrect) => {
-    setPlayerOne((prevState) => ({ ...prevState, disabled: true }));
+  const handlePlayerOneCorrectAnswer = (
+    e: React.MouseEvent,
+    isCorrect: boolean
+  ) => {
+    const target = e.target as Element;
+    setPlayerOne((prevState: object[]) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
     const time = timeDependsDificulty();
-    e.target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
+    target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: object[]) => ({
         ...prevState,
         points: playerOne.points + correctPoints[playerOne.nextQuestion],
       }));
     setTimeout(() => {
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: any) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion],
         turn: !playerOne.turn,
       }));
-      setPlayerTwo((prevState) => ({
+      setPlayerTwo((prevState: object[]) => ({
         ...prevState,
         turn: !playerTwo.turn,
         disabled: false,
@@ -131,24 +135,28 @@ const TwoPlayers = () => {
     }, 500);
   };
 
-  const handlePlayerTwoCorrectAnswer = (e, isCorrect) => {
-    setPlayerTwo((prevState) => ({ ...prevState, disabled: true }));
+  const handlePlayerTwoCorrectAnswer = (
+    e: React.MouseEvent,
+    isCorrect: boolean
+  ) => {
+    const target = e.target as Element;
+    setPlayerTwo((prevState: object[]) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
     const time = timeDependsDificulty();
-    e.target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
+    target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
-      setPlayerTwo((prevState) => ({
+      setPlayerTwo((prevState: object[]) => ({
         ...prevState,
         points: playerTwo.points + correctPoints[playerTwo.nextQuestion],
       }));
     setTimeout(() => {
-      setPlayerTwo((prevState) => ({
+      setPlayerTwo((prevState: any) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerTwo.nextQuestion],
         turn: !playerTwo.turn,
       }));
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: object[]) => ({
         ...prevState,
         turn: !playerOne.turn,
         disabled: false,
@@ -165,10 +173,13 @@ const TwoPlayers = () => {
               Jugador: <span className="text-red-600">{playerOne.name}</span>
             </h1>
             {Questions.slice(
-              randomQuestion(playerOne.nextQuestion),
-              randomQuestion(playerOne.nextQuestion + 1)
+              playerOne.nextQuestion,
+              playerOne.nextQuestion + 1
             ).map((question) => (
-              <div key={question.id} className={!playerOne.turn && `blur-md`}>
+              <div
+                key={question.id}
+                className={!playerOne.turn ? `blur-md` : ""}
+              >
                 <p>
                   Pregunta nº{question.id + 1} de {Questions.length}
                 </p>
@@ -233,7 +244,10 @@ const TwoPlayers = () => {
               playerTwo.nextQuestion,
               playerTwo.nextQuestion + 1
             ).map((question) => (
-              <div key={question.id} className={!playerTwo.turn && `blur-md`}>
+              <div
+                key={question.id}
+                className={!playerTwo.turn ? `blur-md` : ""}
+              >
                 <p>
                   Pregunta nº{question.id + 1} de {Questions.length}
                 </p>

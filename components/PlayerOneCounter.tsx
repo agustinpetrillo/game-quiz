@@ -13,14 +13,14 @@ const PlayerOneCounter = () => {
   useEffect(() => {
     const intervalPlayerOne = setInterval(() => {
       if (playerOne.timeRemaining > 0) {
-        setPlayerOne((prevState) => ({
+        setPlayerOne((prevState: any) => ({
           ...prevState,
           timeRemaining: prevState.timeRemaining - 1,
         }));
       }
       if (totalPlayers === 2)
         if (playerTwo.turn)
-          setPlayerOne((prevState) => ({
+          setPlayerOne((prevState: object[]) => ({
             ...prevState,
             timeRemaining: time[playerOne.nextQuestion],
           }));
@@ -29,7 +29,7 @@ const PlayerOneCounter = () => {
     const time = timeDependsDificulty();
 
     if (playerOne.timeRemaining === 0) {
-      setPlayerOne((prevState) => ({
+      setPlayerOne((prevState: any) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: time[playerOne.nextQuestion + 1],

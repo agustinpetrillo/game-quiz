@@ -12,20 +12,20 @@ const NameSection = () => {
     setPlayerTwo,
     setDificulty,
   } = useContext(Utils);
-  const [isSelected, setIsSelected] = useState([true, false, false]);
+  const [isSelected, setIsSelected] = useState<boolean[]>([true, false, false]);
 
-  const setPlayerOneLocalStorage = (value) => {
+  const setPlayerOneLocalStorage = (value: string) => {
     try {
-      setPlayerOne((prevState) => ({ ...prevState, name: value }));
+      setPlayerOne((prevState: object[]) => ({ ...prevState, name: value }));
       localStorage.setItem("namePlayerOne", value);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const setPlayerTwoLocalStorage = (value) => {
+  const setPlayerTwoLocalStorage = (value: string) => {
     try {
-      setPlayerTwo((prevState) => ({ ...prevState, name: value }));
+      setPlayerTwo((prevState: object[]) => ({ ...prevState, name: value }));
       localStorage.setItem("namePlayerTwo", value);
     } catch (err) {
       console.error(err);
