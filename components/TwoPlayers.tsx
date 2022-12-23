@@ -91,13 +91,13 @@ const TwoPlayers = () => {
     setTimeout(() => {
       // if (playerTwo.gameOver || playerOne.gameOver) {
       if (!playerTwo.gameOver || !playerOne.gameOver) {
-        setPlayerOne((prevState: object[]) => ({
+        setPlayerOne((prevState: Players) => ({
           ...prevState,
           timeRemaining: time[playerOne.nextQuestion],
           nextQuestion: 0,
           points: 0,
         }));
-        setPlayerTwo((prevState: object[]) => ({
+        setPlayerTwo((prevState: Players) => ({
           ...prevState,
           timeRemaining: time[playerTwo.nextQuestion],
           nextQuestion: 0,
@@ -112,12 +112,12 @@ const TwoPlayers = () => {
     isCorrect: boolean
   ) => {
     const target = e.target as Element;
-    setPlayerOne((prevState: object[]) => ({ ...prevState, disabled: true }));
+    setPlayerOne((prevState: Players) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
     const time = timeDependsDificulty();
     target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
-      setPlayerOne((prevState: object[]) => ({
+      setPlayerOne((prevState: Players) => ({
         ...prevState,
         points: playerOne.points + correctPoints[playerOne.nextQuestion],
       }));
@@ -128,7 +128,7 @@ const TwoPlayers = () => {
         timeRemaining: time[playerOne.nextQuestion],
         turn: !playerOne.turn,
       }));
-      setPlayerTwo((prevState: object[]) => ({
+      setPlayerTwo((prevState: Players) => ({
         ...prevState,
         turn: !playerTwo.turn,
         disabled: false,
@@ -141,12 +141,12 @@ const TwoPlayers = () => {
     isCorrect: boolean
   ) => {
     const target = e.target as Element;
-    setPlayerTwo((prevState: object[]) => ({ ...prevState, disabled: true }));
+    setPlayerTwo((prevState: Players) => ({ ...prevState, disabled: true }));
     const correctPoints = Questions.map((question) => question.points_correct);
     const time = timeDependsDificulty();
     target.classList.add(isCorrect ? "!bg-green-500" : "!bg-red-500");
     if (isCorrect)
-      setPlayerTwo((prevState: object[]) => ({
+      setPlayerTwo((prevState: Players) => ({
         ...prevState,
         points: playerTwo.points + correctPoints[playerTwo.nextQuestion],
       }));
@@ -157,7 +157,7 @@ const TwoPlayers = () => {
         timeRemaining: time[playerTwo.nextQuestion],
         turn: !playerTwo.turn,
       }));
-      setPlayerOne((prevState: object[]) => ({
+      setPlayerOne((prevState: Players) => ({
         ...prevState,
         turn: !playerOne.turn,
         disabled: false,
