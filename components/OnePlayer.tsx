@@ -3,6 +3,7 @@ import { Utils } from "../utils/Utils";
 import Questions from "../questions";
 import { useRouter } from "next/router";
 import PlayerOneCounter from "./PlayerOneCounter";
+import { Players } from "../types";
 
 const OnePlayer = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const OnePlayer = () => {
         points: playerOne.points + correctPoints[playerOne.nextQuestion],
       }));
     setTimeout(() => {
-      setPlayerOne((prevState: any) => ({
+      setPlayerOne((prevState: Players) => ({
         ...prevState,
         nextQuestion: prevState.nextQuestion + 1,
         timeRemaining: timeDependsDificulty()[playerOne.nextQuestion],
