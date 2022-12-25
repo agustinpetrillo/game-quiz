@@ -1,5 +1,8 @@
+import { NextPage } from "next";
 import HowManyPlayers from "../components/HowManyPlayers";
 
-export default function Home() {
+const Home: NextPage = () => {
   return <HowManyPlayers />;
-}
+};
+
+export default Home;
