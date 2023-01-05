@@ -7,12 +7,19 @@ import { Players } from "../types";
 
 const OnePlayer = () => {
   const router = useRouter();
-  const { playerOne, setPlayerOne, timeDependsDificulty, randomQuestion } =
-    useContext(Utils);
+  const {
+    playerOne,
+    setPlayerOne,
+    timeDependsDificulty,
+    randomQuestion,
+    randomQuestionState,
+    setRandomQuestionState,
+  } = useContext(Utils);
 
   useEffect(() => {
     document.title = `${playerOne.name} - Preguntas y respuestas`;
-  });
+    setRandomQuestionState(randomQuestion());
+  }, []);
 
   const resetGame = () => {
     setTimeout(() => {

@@ -70,6 +70,7 @@ export const UtilsProvider = ({ children }) => {
     gameOver: false,
     turn: false,
   });
+  const [randomQuestionState, setRandomQuestionState] = useState(0);
   const values = {
     totalPlayers,
     setTotalPlayers,
@@ -81,6 +82,8 @@ export const UtilsProvider = ({ children }) => {
     setPlayerTwo,
     timeDependsDificulty,
     randomQuestion,
+    randomQuestionState,
+    setRandomQuestionState,
   };
   return <Utils.Provider value={values}>{children}</Utils.Provider>;
 };
